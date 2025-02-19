@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserAuthController extends Controller
 {
-    //
+    //login
      function login(Request $request){
         $user = User::where('email', $request->email)->first();
         if(!$user || !Hash::check($request->password, $user->password)){
