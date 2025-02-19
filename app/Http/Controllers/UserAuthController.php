@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 class UserAuthController extends Controller
 {
     //
-    function login(Request $request){
-        return "login function";
+     function login(Request $request){
+        $user = User::where('email', $request->email)->first();
+        if(!$user || !Hash::check($request->password, $user->password)){
+            return ['result'=>"user not found", "success"=>false];
+        }
+        $success['token'] = $user->createToken('MyApp')->plainTextToken;
+        $success['name'] = $user->name;
+        return ['result'=>$success,'msg'=>"user register successfully"];
     }
+
 
     function signup(Request $request){
         $input = $request->all();
