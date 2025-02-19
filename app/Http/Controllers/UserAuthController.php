@@ -19,7 +19,7 @@ class UserAuthController extends Controller
         return ['result'=>$success,'msg'=>"user register successfully"];
     }
 
-
+//signup
     function signup(Request $request){
         $input = $request->all();
         $input["password"] = bcrypt($input["password"]);
