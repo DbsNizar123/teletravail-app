@@ -28,4 +28,11 @@ class UserAuthController extends Controller
         $user['name']= $user->name;
         return ['succes'=>true, "result"=>$succes, "msg"=>"user register successfully "];
     }
+      public function logout(){
+        auth()->user()->tokens()->delete();
+        return response([
+            'message' => 'Logout Success',
+            'status'=>'success'
+        ], 200);
+    }
 }
